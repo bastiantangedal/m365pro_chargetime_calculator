@@ -26,6 +26,8 @@ def main():
     chargeTimeInMinutes = int(round((remainingMah / CHARGE_CURRENT) * CHARGE_EFFICIENCY, 1) * 60)
     chargeTimeInTimeFormat = str(timedelta(minutes=chargeTimeInMinutes))[:-3]
     chargeTimeHours = chargeTimeInTimeFormat.split(":")
+    if chargeTimeHours[1] == "00":
+      chargeTimeHours[1] = "0"
 
     # Print out result
     printUsage(f"\nBattery currently has: {currentPercentage}% \nYou want: {desiredPercentage}%", "\u001b[37m")
