@@ -4,7 +4,7 @@ import time
 
 BATTERY_CAPACITY = 12800 # in mAh
 CHARGE_CURRENT = 1700 # in mAh
-CHARGE_EFFICIENCY = 1.1 # 90% 
+CHARGE_EFFICIENCY = 1.05 # 95% 
 
 def printUsage(text, color):
   """ Simple print function with color """
@@ -42,7 +42,7 @@ def main():
   mahNeeded = desiredPercentageInMah - currentPercentageInMah
 
   # Calculate charge time
-  chargeTimeInMinutes = (mahNeeded / CHARGE_CURRENT * 1.1) * 60
+  chargeTimeInMinutes = (mahNeeded / CHARGE_CURRENT * CHARGE_EFFICIENCY) * 60
 
   chargeTimeInTimeFormat = str(timedelta(minutes=chargeTimeInMinutes))[:-3]
 
@@ -56,7 +56,7 @@ def main():
   else:
     printUsage(f"\nBattery currently has: {int((currentPercentage / BATTERY_CAPACITY) * 100)}% \nYou want: {desiredPercentage}%", "\u001b[37m")
 
-  printUsage(f"""\nThis will approximately take: {chargeTimeHours[0]} hour(s) and {chargeTimeHours[1]} minutes, with a charge efficiency of {(int(0.9*100))}%.""", "\u001b[37m")  
+  printUsage(f"""\nThis will approximately take: {chargeTimeHours[0]} hour(s) and {chargeTimeHours[1]} minutes, with a charge efficiency of {(int(0.95*100))}%.""", "\u001b[37m")  
 
  
 main()
